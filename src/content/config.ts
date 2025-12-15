@@ -10,7 +10,7 @@ const blogCollection = defineCollection({
             description: z.string(),
             date: z.date(),
             image: image(),
-
+            
             // author: z.string(),
 
             author: reference("author"),
@@ -31,8 +31,7 @@ const autorCollection = defineCollection({
             linkedIn: z.string().optional(),
             github: z.string().optional(),
             bio: z.string().optional(),
-            subtitle: z.string().optional(),
-            
+            subtitle: z.string().optional(), 
         }),
 })
 
