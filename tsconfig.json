@@ -6,7 +6,6 @@
      "ignoreDeprecations": "6.0",
      "baseUrl": ".",
      "paths": {
-      "@utils/*": ["src/utils/*"],
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
       "@config/*": ["src/config/*"],

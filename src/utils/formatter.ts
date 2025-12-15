@@ -10,5 +10,5 @@ export class Formatter {
         }).format(date);
 
     }
-    
+     
 }
