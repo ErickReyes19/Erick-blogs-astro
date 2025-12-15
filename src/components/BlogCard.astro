@@ -1,0 +1,35 @@
+---
+import { Formatter } from '../utils/Formatter';
+interface Props {
+    title?: string;
+    date?: string;
+    imageUrl?: string;
+    postUrl?: string;
+    descripcion?: string;
+}
+
+const { title, date, imageUrl, postUrl, descripcion} = Astro.props;
+---
+
+<div class="lg:flex">
+    <img
+        class="object-cover w-full h-56 rounded-lg lg:w-64"
+        src={imageUrl}
+        alt=""
+    />
+
+    <div class="flex flex-col justify-between py-6 lg:mx-6">
+        <a
+            href={postUrl}
+            class="text-xl font-semibold hover:underline text-white"
+        >
+            
+            {title}
+        </a>
+        <p>{descripcion}</p>
+
+        <span class="text-sm  text-gray-300"
+            >{Formatter.FormatDate(date!)}</span
+        >
+    </div>
+</div>

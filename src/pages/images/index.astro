@@ -1,0 +1,12 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+import post05 from "@assets/post-05.png";
+---
+
+<MainLayout title="Images">
+    <h1 class="text-white">Images Page</h1>
+    <p class="text-white">This is the images page content.</p>
+    
+    <Image src={post05} alt="An example image" width={250} height={250} />
+</MainLayout>

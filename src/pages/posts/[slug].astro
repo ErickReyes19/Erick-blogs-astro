@@ -1,0 +1,71 @@
+---
+import BlogLayout from "@layouts/BlogLayout.astro";
+import { Formatter } from "@utils/Formatter";
+import type { GetStaticPaths } from "astro";
+import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+export const getStaticPaths = (async () => {
+    const collection = await getCollection("blog");
+    const collectionPaths = collection.map((post) => ({
+        params: { slug: post.slug },
+        props: { post: post },
+    }));
+    return collectionPaths;
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const frontmatter = post.data;
+
+const { Content, headings } = await post.render();
+
+const author = await getEntry("author", post.data.author.id);
+---
+
+<BlogLayout title={frontmatter.title}>
+    <h1 class="mb-0 text-gray-500 text-xs">{frontmatter.title}</h1>
+
+    <div class="my-2">
+        <Image
+            src={author!.data.avatar}
+            alt={author!.data.name}
+            class="rounded-full"
+            width={50}
+            height={50}
+        />
+    </div>
+    <div class="flex flex-col">
+        <a href={`/blog/${frontmatter.author.id}`} class="text-blue-400  font-bold"
+            >Author: {author?.data.name}</a
+        >
+        <span class="text-gray-200"> {Formatter.FormatDate(frontmatter.date.toString())}</span>
+    </div>
+
+    <Image
+        src={frontmatter.image}
+        alt={frontmatter.title}
+        width={1200}
+        height={220}
+        quality="high"
+        loading="lazy"
+        class="object-cover w-full h-56 rounded-lg lg:h-72 mb-4"
+        transition:name={`${post.slug}-image`}
+    />
+
+    <h3>Tabla de contenido</h3>
+
+    <ol>
+        {
+            headings.map((heading, index) => (
+                <li>
+                    <a href={`#${heading.slug}`}>
+                        {index + 1} {heading.text}
+                    </a>
+                </li>
+            ))
+        }
+    </ol>
+    <Content />
+    <a href="#btn-back" class="my-2">Regresar arriba</a>
+</BlogLayout>
