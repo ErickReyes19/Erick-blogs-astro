@@ -4,7 +4,7 @@ import type { GetStaticPaths } from "astro";
 import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
 import { getCollection } from "astro:content";
-import { Formatter } from "../../utils/Formatter";
+import { Formatter } from "../../utils/formatter";
 
 export const getStaticPaths = (async () => {
     const collection = await getCollection("blog");
