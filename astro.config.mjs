@@ -9,7 +9,7 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  site : 'https://example.com',
+  site : 'https://blog-astro-erick.netlify.app',
   vite: {
     plugins: [tailwindcss()]
   },
