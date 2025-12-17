@@ -15,6 +15,12 @@ const { title = "My Astro Site" } = Astro.props as Props;
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
         <ClientRouter />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="Blog_RSS"
+            href={new URL("rss.xml", Astro.site)}
+        />
     </head>
     <body class="bg-slate-900">
         <main class="mb-10 max-w-5xl m-auto px-2 py-2">
